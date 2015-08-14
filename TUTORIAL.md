@@ -56,6 +56,7 @@ end
 ```
 
 ### `#selective_tweet_shortener`
+
 The two tests we have to pass for this method are:
 
 ```bash
@@ -74,3 +75,18 @@ def selective_tweet_shortener(tweet)
 end
 ```
 
+### `#shortened_tweet_truncator`
+
+This `shortened_tweet_truncator` method will truncate your tweet if the tweet is still longer than 140 character after the `word_substituter` method has run. The truncated tweet should only be 140 characters including `...` in the end. 
+
+```ruby
+def shortened_tweet_truncator(tweet)
+  if word_substituter(tweet).length > 140
+    word_substituter(tweet)[0..136] + ('...')
+  else
+    tweet
+  end
+end
+```
+
+All our specs are passing !
