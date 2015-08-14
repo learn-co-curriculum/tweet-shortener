@@ -56,7 +56,13 @@ end
 ```
 
 ### `#selective_tweet_shortener`
+The two tests we have to pass for this method are:
 
+```bash
+shortens tweets that are more than 140 characters
+does not shorten tweets that are less than 130 characters
+```
+After passing a tweet, this method should check if the tweet is longer than 140 characters. If the answer is yes, we should use our first method `word_substituter` to shorten the tweet, else we just have to return the unchanged tweet.
 
 ```ruby
 def selective_tweet_shortener(tweet)
@@ -67,3 +73,4 @@ def selective_tweet_shortener(tweet)
   end
 end
 ```
+
