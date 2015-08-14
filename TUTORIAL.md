@@ -42,3 +42,28 @@ def word_substituter(tweet)
   end.join(" ")
 end
 ```
+
+### `#bulk_tweet_shortener`
+
+The `bulk_tweet_shortener` method will take in an array of tweets and shorten those tweets one by one. We already have a method that does the individual shortening of tweets, let us just use that method and pass in every tweet. The test also expects that we `puts` the tweets.
+
+```ruby
+def bulk_tweet_shortener(tweets)
+  tweets.each do |tweet|
+    puts word_substituter(tweet)
+  end
+end
+```
+
+### `#selective_tweet_shortener`
+
+
+```ruby
+def selective_tweet_shortener(tweet)
+  if tweet.length > 140
+    word_substituter(tweet)
+  else
+    tweet
+  end
+end
+```
