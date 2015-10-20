@@ -26,9 +26,33 @@ Let us start with defining our `word_substituter` method. This method will also 
 def word_substituter(tweet)
 end
 ```
-After putting a `binding.pry` in our method, we know that the passed in `tweet` is a sting.
 
-We need to split the string to get every word individually, then we need to iterate over every word in our string to compare these words to our `dictionary` hash. If the downcased word is a key in our hash, then we need to replace that word with it substitute, else we need to return that word. Also we need to `join` every word back to a string. 
+To see what the passed in tweet is, we will put a `binding.pry` and play with it in our console. To do so, first we need to `require 'pry'` and then write `binding.pry` into our method.
+
+```ruby
+require 'pry'
+
+def word_substituter(tweet)
+  binding.pry
+end
+```
+
+```bash
+17: def word_substituter(tweet)
+    18:   binding.pry
+ => 19: end
+
+[1] pry(#<RSpec::ExampleGroups::TweetShortener::WordSubstituter>)> tweet
+=> "Hey guys, can anyone teach me how to be cool? I really want to be the best at everything, you know what I mean? Tweeting is super fun you guys!!!!"
+```
+
+Now we know that the `tweet` is a string. 
+
+The next would be to split the string into individual words, to compare them with against the dictionary we create to find any words that we can shorten. The problem is we are given a string. 
+
+If we were doing this in real life, we would go word by word looking for the words we need to replace. How can we do that? If we google `"iterate over words string ruby"` you'll notice the `split` method that converts a string into an array!
+
+So we are going to convert our string into an array, then use some array methods to iterate over our array. While iterating we'll need to check each word, and then replace. We downcase so that incase a word is at a beginning of a sentence the case doesn't matter. After all this iteration we are given an array of words, but our method is supposed to return a string. So after googling "convert array to string ruby" we'll find the `join` method.
 
 
 ```ruby
@@ -45,7 +69,7 @@ end
 
 ### `#bulk_tweet_shortener`
 
-The `bulk_tweet_shortener` method will take in an array of tweets and shorten those tweets one by one. We already have a method that does the individual shortening of tweets, let us just use that method and pass in every tweet. The test also expects that we `puts` the tweets.
+The `bulk_tweet_shortener` method will take in an array of tweets and shorten those tweets one by one. We already have a method that does the individual shortening of tweets, we could just copy and paste that method into out iteration but we would repeat the same code. The solution here would be just to call that method and pass in the tweet thats need shortening. The test also expects that we `puts` the tweets.
 
 ```ruby
 def bulk_tweet_shortener(tweets)
@@ -79,10 +103,23 @@ end
 
 This `shortened_tweet_truncator` method will truncate your tweet if the tweet is still longer than 140 character after the `word_substituter` method has run. The truncated tweet should only be 140 characters including `...` in the end. 
 
+According to ruby-doc.org we can use the `[]`. If passed a range, its beginning and end are interpreted as offsets delimiting the substring to be returned.
+Example:
+
+```ruby
+a = "hello there"
+
+a[2..3]                
+#=> "ll"
+```
+
+In our case we can pass in the range 0..136 that would be the first character to the 137th character and then we would add `…` to the end.
+
+
 ```ruby
 def shortened_tweet_truncator(tweet)
   if word_substituter(tweet).length > 140
-    word_substituter(tweet)[0..136] + ('...')
+    word_substituter(tweet)[0..136] + '...'
   else
     tweet
   end
