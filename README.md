@@ -54,7 +54,8 @@ A client has hired you to automatically post some of their brand messages to twi
 
   Things are going great, but you're noticing that some tweets are too long still, even after substituting shorter words. Being the conscientious developer that you are, you talk to the client about this scenario and decide together that the best thing to do is just truncate the string to 140 characters if it's still too long after you do the substitution.
   
-4. Write another method, `shortened_tweet_truncator`, that truncates the tweet to 140 characters with an ellipsis (...) if it's still too long after substitution. E.g. "Random Passage satisfies the craving for those details that ..."
+4. Write another method, `shortened_tweet_truncator`, that truncates the tweet to 140 characters. Keep in mind that we count numbers from one 1 and computers from 0. Look at the test expectations for further info.
+
   * **Hint:** Strings are indexed like arrays. That means you can return string index elements, or a set of string index elements, using the `[]` method. For example: 
 
 ```ruby
@@ -68,3 +69,5 @@ string[0..10]
 
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/tweet-shortener' title='Manipulating Strings and Hashes: Tweet Shortener'>Manipulating Strings and Hashes: Tweet Shortener</a> on Learn.co and start learning to code for free.</p>
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/tweet-shortener'>Iterating and Manipulating 1</a> on Learn.co and start learning to code for free.</p>
